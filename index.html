@@ -112,7 +112,7 @@
             </div>
 
             <div class="col-12 col-md-5  d-flex justify-content-center" style="flex-direction: column;">
-                <h1 class="display-1 fw-bold" id="hero-text">Crafting Digital Masterpieces</h1>
+                <h1 class="display-1 fw-bold" id="hero-text"></h1>
 
                 <p class="lead fs-2 ">we bring ideas to life.</p>
 
@@ -124,7 +124,7 @@
     
     <hr class="my-5"> 
     
-    <h1 class="fw-bold display-1 appear" id="features">FEATURES</h1>
+    <h1 class="fw-bold display-1 appear mb-3" id="features">FEATURES</h1>
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-3 mx-auto my-3 my-md-0 card">
@@ -261,6 +261,17 @@
         each: 1,
     }
 });
+
+    gsap.to("#hero-text", {
+
+    text: "Crafting Digital Masterpieces",
+    repeat: -1,
+    duration: 10,
+    yoyo: true,
+    ease: "elastic",
+
+
+    });
 
 gsap.to(".nav-link", {
     y: -10,
