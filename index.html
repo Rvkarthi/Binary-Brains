@@ -55,6 +55,7 @@
             font-size: 3rem;
         }
         .nav-link{
+            border-bottom: 1px solid grey;
             font-size: 1.5rem;
         }
 
@@ -258,12 +259,13 @@
     }
 });
 
-gsap.to(".nav-item", {
+gsap.to(".nav-link", {
     y: -10,
     repeat: -1,
     yoyo: true,
     skewX: -15,
     // scale: 1.1,
+    color: "#2e49d1",
     ease: "elastic",
     stagger: {
         each: .5
