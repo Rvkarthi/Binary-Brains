@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary brains</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Bebas Neue',sans-serif;
+    }
+
+    .appear{
+            -webkit-text-stroke: 1px rgb(10, 10, 10);
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+    .bg-primary{
+            background-color: #2e49d1 !important;
+        }
+
+    .title{
+            letter-spacing: 1px;
+            font-family: "Bebas Neue", serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: #f5f5f5;
+        }
+        ul li{
+            font-size: 1rem !important;
+            list-style: none;
+            color: #f5f5f5;
+        }
+
+    .navbar-brand{
+            font-family: "Bebas Neue", serif;
+            font-size: 3rem;
+        }
+        .nav-link{
+            font-weight: 650;
+            border-bottom: 1px solid grey;
+            font-size: 1.5rem;
+        }
+
+        .active{
+            text-decoration: underline;
+        }
+
+:root{
+    --bg-color:#f5f5f5;
+    --text-color: #f5f5f5;
+    --main-color:#2e49d1;
+    --other-color:#365066;
+}
+
+body{
+    background-color:var(--bg-color);
+    transition: .5s ease;
+}
+
+.card{
+    width: 18rem;
+    aspect-ratio: 10/10;
+}
+
+.card-body{
+    background-color: var(--main-color);
+    color: var(--text-color);
+}
+
+
+
+.card-title{ 
+    font-family: "Bebas Neue";
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+
+.btn{
+    border-radius: 2rem;
+    text-align: center;
+    display:block;
+    margin: 0 auto;
+    width: 150px;
+    
+}
+     </style>
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+          <span class="navbar-brand w3-animate-top">Binary Brains</span>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto float-end w3-animate-top">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#features">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#projects">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#About">About us</a>
+              </li>
+
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown link
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li> -->
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+    <div class="container my-5">
+
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-12 col-md-4 mt-5 m-md-0">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACUCAMAAAA02EJtAAAAOVBMVEWhoaHu7u6enp7x8fGbm5vJycnp6en19fWkpKSvr6/S0tLk5OTg4ODX19fNzc3a2tq8vLy1tbXDw8OY50TrAAAFOElEQVR4nO2c4ZKrIAyFEVBBq1Xf/2EvWLfdba3COYjtzD1/O7N+G0IIgSAKWqoqhTVSPCS9hJ2aS+t+VvwnZgn6L6h21GJNUmppPG+RBpZGVZWVq6R3A5uxKepPQK3GLdIFVwwVb1kWte52Sb20KFsWlkJVddFOQagO1nakFxCoSvXWmDBQ7wZi4oIBjKqq3uhAi/4YdqQ8FkVVnV0PUZuslolbIKrqx/Chf0iOhA+AqG23GU3fsw4wKYq6Hfe3WEvYrBiqKkFSx9rmRW1hUiEtalYIVU3xs//B2oOsEGqNeurNrKALYA6Ag85mzYhaDYRVhTRVPlQ1EL7qFi3MWzFfNYxVnVmhHAtzAIrUsV4RsyKo6sqiDrlQ655FtcjEglBDM//3QjwAcgAqVs1mLYHPQqj7m9Q9VCQXPAkVcdZzUIUA8oCTUPUlD2qRABUIAedEAKGb/6hPqvGd1R0VSK5OWVgzOsDla1DpJDBfBCgUS5ovrtb8yppptXIhgNpbOSE7QcwBOhJVjrlQ+c3VBHwUrAQy5RWPCsQqFJV0VpNrw+L3rJxRoUI7htr1lmK1Uxk/ryDUKfJo5dWsWseXAgBUdUFOLJ5lok8HEdQmASkwsxBUPgd0it+znoUqh+hq4FkOAKRWCOo1wbQCSqxIsGq5oDobdcqDmqJk0WXaW7Gl4JypNZlYIaEKTa0bOrUGvvo/td5DRU6u/qfWO0bNdsJS+FWAOmWNTwBw1II7EM52GliwHpDxjLXgVgFkVSVQ4cKlxOI/geoSbA0FrEEboApIoTq7ImHA+CvNuVGhgiAWUXnU4hqPiiz+KVCr+Ish6CUrFjV+IYgvVCRCjd5myzH//dUFNbYkpEvivjXnALEbQs18jESN2xDKkbnETvYFxKUC4OKfBlXFhFZpqW/RjSEx3oocVqRDVV2EUfFFNQlqGxyvJFCnSosaXGuT/emooc4qqfmfF/XyRajcp3L66tlWDc9YTvfV8IKAZNKqFKhhvYGzLOcBdBtjxFZQGqrljkwCizEY1EuPRBsbg6qKXkTuWaXFN1dMxyXSH0IkgkR1pXrTa73DCu8EieZQsBao0fZAuBIY0Gv9zq5gAzZaCsZGf2EdL0jQwo7Yip7qDZLCAu1h8aiquJSxMeoVVuuxaeNsG4taF91gWNAbrbRTF/PGQRxqrXorUtxcWWC9IwTDhqO60boOWFF9Q84RrlWYI4SiKtX2I+2ia3KOUAZ5bRiqqi+DkclG/gXWDNd61xH2Ud0/XJXHcd5p+2on69pDdQPfDJK9AxgiLabr5jK2iarqqhnswQZ9SJqxrOq3tBuofsabdKEpCNZ57duE9g2qKtouz7i/0LplbD16raL6cT96Im3AumVsLZ9ZQa2r3OP+CmvG5iV6PaM6Bx3PGPcXWi3L9m9AeEa9DqcN/LO0HLvfofYPqh/6TwH1+vti029U1Z3roiuSslpDrfhW6vSS5l49+oWaoJH2AD0OO8SHk/56TOCOyj1PcaR+zhAX1DR3/Q/S0vHyY9Wzcba0PIF0Q62Zl3QOl5tZ6gdVtWfTbEs2d6sSbz5l0e2+24yKl8oySbcLapqupCM1dzzMqM2HG/X2VM/sAJ+4+P+VP/ScUemOhMPlj+c8anU2yL58IuBR20+O/zf5/EokaPPIIZe2ik9fVRfJZkblH/w4Xgsq35R2vGQ/o376WuWlZ1T1DaguZxUpHtHIoBtq8QWzakHlX1HJoBsq8UJpPn0dKv/iTwZ9G2qCXt8M+jrUiPtn52nOAb4D1eUA/wDyXUgxtaK6AQAAAABJRU5ErkJggg==" 
+                        class="card-img-top" alt="...">
+                  <div class="card-body rounded rounded-3">
+                     <h5 class="card-title text-center">R.V.Karthikrishna</h5>
+                     <p class="card-text fs-4">Specilization:</p>
+                     <p class="ps-3 fs-5">Web Developer <br>Designer <br>PowerPoint Expertor <br> Also a TeamLeader</p>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4 mt-5 m-md-0">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACUCAMAAAA02EJtAAAAOVBMVEWhoaHu7u6enp7x8fGbm5vJycnp6en19fWkpKSvr6/S0tLk5OTg4ODX19fNzc3a2tq8vLy1tbXDw8OY50TrAAAFOElEQVR4nO2c4ZKrIAyFEVBBq1Xf/2EvWLfdba3COYjtzD1/O7N+G0IIgSAKWqoqhTVSPCS9hJ2aS+t+VvwnZgn6L6h21GJNUmppPG+RBpZGVZWVq6R3A5uxKepPQK3GLdIFVwwVb1kWte52Sb20KFsWlkJVddFOQagO1nakFxCoSvXWmDBQ7wZi4oIBjKqq3uhAi/4YdqQ8FkVVnV0PUZuslolbIKrqx/Chf0iOhA+AqG23GU3fsw4wKYq6Hfe3WEvYrBiqKkFSx9rmRW1hUiEtalYIVU3xs//B2oOsEGqNeurNrKALYA6Ag85mzYhaDYRVhTRVPlQ1EL7qFi3MWzFfNYxVnVmhHAtzAIrUsV4RsyKo6sqiDrlQ655FtcjEglBDM//3QjwAcgAqVs1mLYHPQqj7m9Q9VCQXPAkVcdZzUIUA8oCTUPUlD2qRABUIAedEAKGb/6hPqvGd1R0VSK5OWVgzOsDla1DpJDBfBCgUS5ovrtb8yppptXIhgNpbOSE7QcwBOhJVjrlQ+c3VBHwUrAQy5RWPCsQqFJV0VpNrw+L3rJxRoUI7htr1lmK1Uxk/ryDUKfJo5dWsWseXAgBUdUFOLJ5lok8HEdQmASkwsxBUPgd0it+znoUqh+hq4FkOAKRWCOo1wbQCSqxIsGq5oDobdcqDmqJk0WXaW7Gl4JypNZlYIaEKTa0bOrUGvvo/td5DRU6u/qfWO0bNdsJS+FWAOmWNTwBw1II7EM52GliwHpDxjLXgVgFkVSVQ4cKlxOI/geoSbA0FrEEboApIoTq7ImHA+CvNuVGhgiAWUXnU4hqPiiz+KVCr+Ish6CUrFjV+IYgvVCRCjd5myzH//dUFNbYkpEvivjXnALEbQs18jESN2xDKkbnETvYFxKUC4OKfBlXFhFZpqW/RjSEx3oocVqRDVV2EUfFFNQlqGxyvJFCnSosaXGuT/emooc4qqfmfF/XyRajcp3L66tlWDc9YTvfV8IKAZNKqFKhhvYGzLOcBdBtjxFZQGqrljkwCizEY1EuPRBsbg6qKXkTuWaXFN1dMxyXSH0IkgkR1pXrTa73DCu8EieZQsBao0fZAuBIY0Gv9zq5gAzZaCsZGf2EdL0jQwo7Yip7qDZLCAu1h8aiquJSxMeoVVuuxaeNsG4taF91gWNAbrbRTF/PGQRxqrXorUtxcWWC9IwTDhqO60boOWFF9Q84RrlWYI4SiKtX2I+2ia3KOUAZ5bRiqqi+DkclG/gXWDNd61xH2Ud0/XJXHcd5p+2on69pDdQPfDJK9AxgiLabr5jK2iarqqhnswQZ9SJqxrOq3tBuofsabdKEpCNZ57duE9g2qKtouz7i/0LplbD16raL6cT96Im3AumVsLZ9ZQa2r3OP+CmvG5iV6PaM6Bx3PGPcXWi3L9m9AeEa9DqcN/LO0HLvfofYPqh/6TwH1+vti029U1Z3roiuSslpDrfhW6vSS5l49+oWaoJH2AD0OO8SHk/56TOCOyj1PcaR+zhAX1DR3/Q/S0vHyY9Wzcba0PIF0Q62Zl3QOl5tZ6gdVtWfTbEs2d6sSbz5l0e2+24yKl8oySbcLapqupCM1dzzMqM2HG/X2VM/sAJ+4+P+VP/ScUemOhMPlj+c8anU2yL58IuBR20+O/zf5/EokaPPIIZe2ik9fVRfJZkblH/w4Xgsq35R2vGQ/o376WuWlZ1T1DaguZxUpHtHIoBtq8QWzakHlX1HJoBsq8UJpPn0dKv/iTwZ9G2qCXt8M+jrUiPtn52nOAb4D1eUA/wDyXUgxtaK6AQAAAABJRU5ErkJggg==" 
+                        class="card-img-top" alt="...">
+                  <div class="card-body rounded rounded-3">
+                     <h5 class="card-title text-center">Guruprasad Jadhav</h5>
+                     <p class="card-text fs-4">Specilization:</p>
+                     <p class="ps-3 fs-5">Designer<br>Poster making<br>PowerPoint Expertor <br> Also a Learner</p>
+                  </div>
+                </div>  
+            </div>
+
+            <div class="col-12 col-md-4 mt-5 m-md-0">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACUCAMAAAA02EJtAAAAOVBMVEWhoaHu7u6enp7x8fGbm5vJycnp6en19fWkpKSvr6/S0tLk5OTg4ODX19fNzc3a2tq8vLy1tbXDw8OY50TrAAAFOElEQVR4nO2c4ZKrIAyFEVBBq1Xf/2EvWLfdba3COYjtzD1/O7N+G0IIgSAKWqoqhTVSPCS9hJ2aS+t+VvwnZgn6L6h21GJNUmppPG+RBpZGVZWVq6R3A5uxKepPQK3GLdIFVwwVb1kWte52Sb20KFsWlkJVddFOQagO1nakFxCoSvXWmDBQ7wZi4oIBjKqq3uhAi/4YdqQ8FkVVnV0PUZuslolbIKrqx/Chf0iOhA+AqG23GU3fsw4wKYq6Hfe3WEvYrBiqKkFSx9rmRW1hUiEtalYIVU3xs//B2oOsEGqNeurNrKALYA6Ag85mzYhaDYRVhTRVPlQ1EL7qFi3MWzFfNYxVnVmhHAtzAIrUsV4RsyKo6sqiDrlQ655FtcjEglBDM//3QjwAcgAqVs1mLYHPQqj7m9Q9VCQXPAkVcdZzUIUA8oCTUPUlD2qRABUIAedEAKGb/6hPqvGd1R0VSK5OWVgzOsDla1DpJDBfBCgUS5ovrtb8yppptXIhgNpbOSE7QcwBOhJVjrlQ+c3VBHwUrAQy5RWPCsQqFJV0VpNrw+L3rJxRoUI7htr1lmK1Uxk/ryDUKfJo5dWsWseXAgBUdUFOLJ5lok8HEdQmASkwsxBUPgd0it+znoUqh+hq4FkOAKRWCOo1wbQCSqxIsGq5oDobdcqDmqJk0WXaW7Gl4JypNZlYIaEKTa0bOrUGvvo/td5DRU6u/qfWO0bNdsJS+FWAOmWNTwBw1II7EM52GliwHpDxjLXgVgFkVSVQ4cKlxOI/geoSbA0FrEEboApIoTq7ImHA+CvNuVGhgiAWUXnU4hqPiiz+KVCr+Ish6CUrFjV+IYgvVCRCjd5myzH//dUFNbYkpEvivjXnALEbQs18jESN2xDKkbnETvYFxKUC4OKfBlXFhFZpqW/RjSEx3oocVqRDVV2EUfFFNQlqGxyvJFCnSosaXGuT/emooc4qqfmfF/XyRajcp3L66tlWDc9YTvfV8IKAZNKqFKhhvYGzLOcBdBtjxFZQGqrljkwCizEY1EuPRBsbg6qKXkTuWaXFN1dMxyXSH0IkgkR1pXrTa73DCu8EieZQsBao0fZAuBIY0Gv9zq5gAzZaCsZGf2EdL0jQwo7Yip7qDZLCAu1h8aiquJSxMeoVVuuxaeNsG4taF91gWNAbrbRTF/PGQRxqrXorUtxcWWC9IwTDhqO60boOWFF9Q84RrlWYI4SiKtX2I+2ia3KOUAZ5bRiqqi+DkclG/gXWDNd61xH2Ud0/XJXHcd5p+2on69pDdQPfDJK9AxgiLabr5jK2iarqqhnswQZ9SJqxrOq3tBuofsabdKEpCNZ57duE9g2qKtouz7i/0LplbD16raL6cT96Im3AumVsLZ9ZQa2r3OP+CmvG5iV6PaM6Bx3PGPcXWi3L9m9AeEa9DqcN/LO0HLvfofYPqh/6TwH1+vti029U1Z3roiuSslpDrfhW6vSS5l49+oWaoJH2AD0OO8SHk/56TOCOyj1PcaR+zhAX1DR3/Q/S0vHyY9Wzcba0PIF0Q62Zl3QOl5tZ6gdVtWfTbEs2d6sSbz5l0e2+24yKl8oySbcLapqupCM1dzzMqM2HG/X2VM/sAJ+4+P+VP/ScUemOhMPlj+c8anU2yL58IuBR20+O/zf5/EokaPPIIZe2ik9fVRfJZkblH/w4Xgsq35R2vGQ/o376WuWlZ1T1DaguZxUpHtHIoBtq8QWzakHlX1HJoBsq8UJpPn0dKv/iTwZ9G2qCXt8M+jrUiPtn52nOAb4D1eUA/wDyXUgxtaK6AQAAAABJRU5ErkJggg==" 
+                        class="card-img-top" alt="...">
+                  <div class="card-body rounded rounded-3">
+                     <h5 class="card-title text-center">R.Aakash</h5>
+                     <p class="card-text fs-4">Specilization:</p>
+                     <p class="ps-3 fs-5">Designer <br> Poster Making <br>PowerPoint Expertor <br> Also a Learner</p>
+                  </div>
+                </div>  
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 mt-0 m-md-0">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACUCAMAAAA02EJtAAAAOVBMVEWhoaHu7u6enp7x8fGbm5vJycnp6en19fWkpKSvr6/S0tLk5OTg4ODX19fNzc3a2tq8vLy1tbXDw8OY50TrAAAFOElEQVR4nO2c4ZKrIAyFEVBBq1Xf/2EvWLfdba3COYjtzD1/O7N+G0IIgSAKWqoqhTVSPCS9hJ2aS+t+VvwnZgn6L6h21GJNUmppPG+RBpZGVZWVq6R3A5uxKepPQK3GLdIFVwwVb1kWte52Sb20KFsWlkJVddFOQagO1nakFxCoSvXWmDBQ7wZi4oIBjKqq3uhAi/4YdqQ8FkVVnV0PUZuslolbIKrqx/Chf0iOhA+AqG23GU3fsw4wKYq6Hfe3WEvYrBiqKkFSx9rmRW1hUiEtalYIVU3xs//B2oOsEGqNeurNrKALYA6Ag85mzYhaDYRVhTRVPlQ1EL7qFi3MWzFfNYxVnVmhHAtzAIrUsV4RsyKo6sqiDrlQ655FtcjEglBDM//3QjwAcgAqVs1mLYHPQqj7m9Q9VCQXPAkVcdZzUIUA8oCTUPUlD2qRABUIAedEAKGb/6hPqvGd1R0VSK5OWVgzOsDla1DpJDBfBCgUS5ovrtb8yppptXIhgNpbOSE7QcwBOhJVjrlQ+c3VBHwUrAQy5RWPCsQqFJV0VpNrw+L3rJxRoUI7htr1lmK1Uxk/ryDUKfJo5dWsWseXAgBUdUFOLJ5lok8HEdQmASkwsxBUPgd0it+znoUqh+hq4FkOAKRWCOo1wbQCSqxIsGq5oDobdcqDmqJk0WXaW7Gl4JypNZlYIaEKTa0bOrUGvvo/td5DRU6u/qfWO0bNdsJS+FWAOmWNTwBw1II7EM52GliwHpDxjLXgVgFkVSVQ4cKlxOI/geoSbA0FrEEboApIoTq7ImHA+CvNuVGhgiAWUXnU4hqPiiz+KVCr+Ish6CUrFjV+IYgvVCRCjd5myzH//dUFNbYkpEvivjXnALEbQs18jESN2xDKkbnETvYFxKUC4OKfBlXFhFZpqW/RjSEx3oocVqRDVV2EUfFFNQlqGxyvJFCnSosaXGuT/emooc4qqfmfF/XyRajcp3L66tlWDc9YTvfV8IKAZNKqFKhhvYGzLOcBdBtjxFZQGqrljkwCizEY1EuPRBsbg6qKXkTuWaXFN1dMxyXSH0IkgkR1pXrTa73DCu8EieZQsBao0fZAuBIY0Gv9zq5gAzZaCsZGf2EdL0jQwo7Yip7qDZLCAu1h8aiquJSxMeoVVuuxaeNsG4taF91gWNAbrbRTF/PGQRxqrXorUtxcWWC9IwTDhqO60boOWFF9Q84RrlWYI4SiKtX2I+2ia3KOUAZ5bRiqqi+DkclG/gXWDNd61xH2Ud0/XJXHcd5p+2on69pDdQPfDJK9AxgiLabr5jK2iarqqhnswQZ9SJqxrOq3tBuofsabdKEpCNZ57duE9g2qKtouz7i/0LplbD16raL6cT96Im3AumVsLZ9ZQa2r3OP+CmvG5iV6PaM6Bx3PGPcXWi3L9m9AeEa9DqcN/LO0HLvfofYPqh/6TwH1+vti029U1Z3roiuSslpDrfhW6vSS5l49+oWaoJH2AD0OO8SHk/56TOCOyj1PcaR+zhAX1DR3/Q/S0vHyY9Wzcba0PIF0Q62Zl3QOl5tZ6gdVtWfTbEs2d6sSbz5l0e2+24yKl8oySbcLapqupCM1dzzMqM2HG/X2VM/sAJ+4+P+VP/ScUemOhMPlj+c8anU2yL58IuBR20+O/zf5/EokaPPIIZe2ik9fVRfJZkblH/w4Xgsq35R2vGQ/o376WuWlZ1T1DaguZxUpHtHIoBtq8QWzakHlX1HJoBsq8UJpPn0dKv/iTwZ9G2qCXt8M+jrUiPtn52nOAb4D1eUA/wDyXUgxtaK6AQAAAABJRU5ErkJggg==" 
+                        class="card-img-top" alt="...">
+                  <div class="card-body rounded rounded-3">
+                     <h5 class="card-title text-center">R.Abinaya</h5>
+                     <p class="card-text fs-4">Specilization:</p>
+                     <p class="ps-3 fs-5">Web Developer <br>Designer <br>PowerPoint Expertor <br> Also a Learner</p>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 mt-5 m-md-0">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACUCAMAAAA02EJtAAAAOVBMVEWhoaHu7u6enp7x8fGbm5vJycnp6en19fWkpKSvr6/S0tLk5OTg4ODX19fNzc3a2tq8vLy1tbXDw8OY50TrAAAFOElEQVR4nO2c4ZKrIAyFEVBBq1Xf/2EvWLfdba3COYjtzD1/O7N+G0IIgSAKWqoqhTVSPCS9hJ2aS+t+VvwnZgn6L6h21GJNUmppPG+RBpZGVZWVq6R3A5uxKepPQK3GLdIFVwwVb1kWte52Sb20KFsWlkJVddFOQagO1nakFxCoSvXWmDBQ7wZi4oIBjKqq3uhAi/4YdqQ8FkVVnV0PUZuslolbIKrqx/Chf0iOhA+AqG23GU3fsw4wKYq6Hfe3WEvYrBiqKkFSx9rmRW1hUiEtalYIVU3xs//B2oOsEGqNeurNrKALYA6Ag85mzYhaDYRVhTRVPlQ1EL7qFi3MWzFfNYxVnVmhHAtzAIrUsV4RsyKo6sqiDrlQ655FtcjEglBDM//3QjwAcgAqVs1mLYHPQqj7m9Q9VCQXPAkVcdZzUIUA8oCTUPUlD2qRABUIAedEAKGb/6hPqvGd1R0VSK5OWVgzOsDla1DpJDBfBCgUS5ovrtb8yppptXIhgNpbOSE7QcwBOhJVjrlQ+c3VBHwUrAQy5RWPCsQqFJV0VpNrw+L3rJxRoUI7htr1lmK1Uxk/ryDUKfJo5dWsWseXAgBUdUFOLJ5lok8HEdQmASkwsxBUPgd0it+znoUqh+hq4FkOAKRWCOo1wbQCSqxIsGq5oDobdcqDmqJk0WXaW7Gl4JypNZlYIaEKTa0bOrUGvvo/td5DRU6u/qfWO0bNdsJS+FWAOmWNTwBw1II7EM52GliwHpDxjLXgVgFkVSVQ4cKlxOI/geoSbA0FrEEboApIoTq7ImHA+CvNuVGhgiAWUXnU4hqPiiz+KVCr+Ish6CUrFjV+IYgvVCRCjd5myzH//dUFNbYkpEvivjXnALEbQs18jESN2xDKkbnETvYFxKUC4OKfBlXFhFZpqW/RjSEx3oocVqRDVV2EUfFFNQlqGxyvJFCnSosaXGuT/emooc4qqfmfF/XyRajcp3L66tlWDc9YTvfV8IKAZNKqFKhhvYGzLOcBdBtjxFZQGqrljkwCizEY1EuPRBsbg6qKXkTuWaXFN1dMxyXSH0IkgkR1pXrTa73DCu8EieZQsBao0fZAuBIY0Gv9zq5gAzZaCsZGf2EdL0jQwo7Yip7qDZLCAu1h8aiquJSxMeoVVuuxaeNsG4taF91gWNAbrbRTF/PGQRxqrXorUtxcWWC9IwTDhqO60boOWFF9Q84RrlWYI4SiKtX2I+2ia3KOUAZ5bRiqqi+DkclG/gXWDNd61xH2Ud0/XJXHcd5p+2on69pDdQPfDJK9AxgiLabr5jK2iarqqhnswQZ9SJqxrOq3tBuofsabdKEpCNZ57duE9g2qKtouz7i/0LplbD16raL6cT96Im3AumVsLZ9ZQa2r3OP+CmvG5iV6PaM6Bx3PGPcXWi3L9m9AeEa9DqcN/LO0HLvfofYPqh/6TwH1+vti029U1Z3roiuSslpDrfhW6vSS5l49+oWaoJH2AD0OO8SHk/56TOCOyj1PcaR+zhAX1DR3/Q/S0vHyY9Wzcba0PIF0Q62Zl3QOl5tZ6gdVtWfTbEs2d6sSbz5l0e2+24yKl8oySbcLapqupCM1dzzMqM2HG/X2VM/sAJ+4+P+VP/ScUemOhMPlj+c8anU2yL58IuBR20+O/zf5/EokaPPIIZe2ik9fVRfJZkblH/w4Xgsq35R2vGQ/o376WuWlZ1T1DaguZxUpHtHIoBtq8QWzakHlX1HJoBsq8UJpPn0dKv/iTwZ9G2qCXt8M+jrUiPtn52nOAb4D1eUA/wDyXUgxtaK6AQAAAABJRU5ErkJggg==" 
+                        class="card-img-top" alt="...">
+                  <div class="card-body rounded rounded-3">
+                     <h5 class="card-title text-center">P.Dhasumitha</h5>
+                     <p class="card-text fs-4">Specilization:</p>
+                     <p class="ps-3 fs-5">Web Developer<br>PowerPoint Expertor<br>Dart <br> Also a Learner</p>
+                  </div>
+                </div>  
+            </div>
+
+            <div class="col-sm-12 col-md-4 mt-5 m-md-0">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACUCAMAAAA02EJtAAAAOVBMVEWhoaHu7u6enp7x8fGbm5vJycnp6en19fWkpKSvr6/S0tLk5OTg4ODX19fNzc3a2tq8vLy1tbXDw8OY50TrAAAFOElEQVR4nO2c4ZKrIAyFEVBBq1Xf/2EvWLfdba3COYjtzD1/O7N+G0IIgSAKWqoqhTVSPCS9hJ2aS+t+VvwnZgn6L6h21GJNUmppPG+RBpZGVZWVq6R3A5uxKepPQK3GLdIFVwwVb1kWte52Sb20KFsWlkJVddFOQagO1nakFxCoSvXWmDBQ7wZi4oIBjKqq3uhAi/4YdqQ8FkVVnV0PUZuslolbIKrqx/Chf0iOhA+AqG23GU3fsw4wKYq6Hfe3WEvYrBiqKkFSx9rmRW1hUiEtalYIVU3xs//B2oOsEGqNeurNrKALYA6Ag85mzYhaDYRVhTRVPlQ1EL7qFi3MWzFfNYxVnVmhHAtzAIrUsV4RsyKo6sqiDrlQ655FtcjEglBDM//3QjwAcgAqVs1mLYHPQqj7m9Q9VCQXPAkVcdZzUIUA8oCTUPUlD2qRABUIAedEAKGb/6hPqvGd1R0VSK5OWVgzOsDla1DpJDBfBCgUS5ovrtb8yppptXIhgNpbOSE7QcwBOhJVjrlQ+c3VBHwUrAQy5RWPCsQqFJV0VpNrw+L3rJxRoUI7htr1lmK1Uxk/ryDUKfJo5dWsWseXAgBUdUFOLJ5lok8HEdQmASkwsxBUPgd0it+znoUqh+hq4FkOAKRWCOo1wbQCSqxIsGq5oDobdcqDmqJk0WXaW7Gl4JypNZlYIaEKTa0bOrUGvvo/td5DRU6u/qfWO0bNdsJS+FWAOmWNTwBw1II7EM52GliwHpDxjLXgVgFkVSVQ4cKlxOI/geoSbA0FrEEboApIoTq7ImHA+CvNuVGhgiAWUXnU4hqPiiz+KVCr+Ish6CUrFjV+IYgvVCRCjd5myzH//dUFNbYkpEvivjXnALEbQs18jESN2xDKkbnETvYFxKUC4OKfBlXFhFZpqW/RjSEx3oocVqRDVV2EUfFFNQlqGxyvJFCnSosaXGuT/emooc4qqfmfF/XyRajcp3L66tlWDc9YTvfV8IKAZNKqFKhhvYGzLOcBdBtjxFZQGqrljkwCizEY1EuPRBsbg6qKXkTuWaXFN1dMxyXSH0IkgkR1pXrTa73DCu8EieZQsBao0fZAuBIY0Gv9zq5gAzZaCsZGf2EdL0jQwo7Yip7qDZLCAu1h8aiquJSxMeoVVuuxaeNsG4taF91gWNAbrbRTF/PGQRxqrXorUtxcWWC9IwTDhqO60boOWFF9Q84RrlWYI4SiKtX2I+2ia3KOUAZ5bRiqqi+DkclG/gXWDNd61xH2Ud0/XJXHcd5p+2on69pDdQPfDJK9AxgiLabr5jK2iarqqhnswQZ9SJqxrOq3tBuofsabdKEpCNZ57duE9g2qKtouz7i/0LplbD16raL6cT96Im3AumVsLZ9ZQa2r3OP+CmvG5iV6PaM6Bx3PGPcXWi3L9m9AeEa9DqcN/LO0HLvfofYPqh/6TwH1+vti029U1Z3roiuSslpDrfhW6vSS5l49+oWaoJH2AD0OO8SHk/56TOCOyj1PcaR+zhAX1DR3/Q/S0vHyY9Wzcba0PIF0Q62Zl3QOl5tZ6gdVtWfTbEs2d6sSbz5l0e2+24yKl8oySbcLapqupCM1dzzMqM2HG/X2VM/sAJ+4+P+VP/ScUemOhMPlj+c8anU2yL58IuBR20+O/zf5/EokaPPIIZe2ik9fVRfJZkblH/w4Xgsq35R2vGQ/o376WuWlZ1T1DaguZxUpHtHIoBtq8QWzakHlX1HJoBsq8UJpPn0dKv/iTwZ9G2qCXt8M+jrUiPtn52nOAb4D1eUA/wDyXUgxtaK6AQAAAABJRU5ErkJggg=="
+                        class="card-img-top" alt="...">
+                  <div class="card-body rounded rounded-3">
+                     <h5 class="card-title text-center">G.Lakshitha</h5>
+                     <p class="card-text fs-4">Specilization:</p>
+                     <p class="ps-3 fs-5">Web Developer<br>PowerPoint Expertor<br>Java <br> Also a Learner</p>
+                  </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-5"> 
+
+    <footer class="container-fluid py-5 mt-5 bg-primary" id="About">
+        <h6 class="text-center title" style="mix-blend-mode: normal;">About us</h6>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <h6 class="title">Teams</h6>
+                    <ul>
+                        <li class="lead">R.V. KARTHIKRISHNA</li>
+                        <li class="lead">GURUPRASAD RAMESH JADHAV</li>
+                        <li class="lead">R. ABINAYA</li>
+                        <li class="lead">R. AAKASH</li>
+                        <li class="lead">P. Dhasumitha</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <h6 class="title">Website</h6>
+                    <ul>
+                        <li class="lead">R.V. KARTHIKRISHNA</li>
+                        <li class="lead">R. ABINAYA</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <h6 class="title">Designing</h6>
+                    <ul>
+                        <li class="lead">GURUPRASAD RAMESH JADHAV</li>
+                        <li class="lead">R. AAKASH</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <h6 class="title">Powerpoint Experts</h6>
+                    <ul>
+                        <li class="lead">R.V.KARTHIKRISHNA</li>
+                        <li class="lead">R. AAKASH</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+     
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/TextPlugin.min.js"></script>
+<script>
+    
+  
+
+    
+    gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+    // Animate each .appear element separately
+    document.querySelectorAll(".appear").forEach((element) => {
+        gsap.fromTo(
+            element,
+            { width: "0%" },
+            {
+                width: "100%",
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 70%",
+                    end: "bottom center",
+                    //markers: true, // Set to false to hide debugging markers
+                    scrub: true,
+                },
+            }
+        )
+    });
+
+
+    gsap.to(".card-body img", {
+    rotateY: 180,
+    yoyo: true,
+    duration: 1,
+    repeat: -1,
+    scale: 0.9,
+    stagger: {
+        each: 1,
+    }
+});
+
+    gsap.to("#hero-text", {
+
+    text: "Crafting Digital Masterpieces",
+    repeat: -1,
+    duration: 5,
+    yoyo: true,
+    ease: "bounce",
+
+
+    });
+
+gsap.to(".nav-link", {
+    y: -10,
+    repeat: -1,
+    yoyo: true,
+    skewX: -15,
+    // scale: 1.1,
+    color: "#2e49d1",
+    ease: "elastic",
+    stagger: {
+        each: .5
+    }
+})
+
+
+
+
+    document.querySelectorAll(".text").forEach((element) => {
+        gsap.to(element,
+        {
+                text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque amet quo itaque consequuntur animi laboriosam nisi. Officiis, perferendis odit similique expedita nesciunt reiciendis eius totam quis laborum minus corporis nemo quam aliquam illo impedit sequi perspiciatis cumque corrupti inventore nostrum natus debitis eos tempore. Quas eaque laudantium inventore beatae maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam veniam iste labore nobis dignissimos, culpa eum velit amet minima, odit accusamus quisquam dolores cupiditate facilis sed qui provident molestiae rerum laudantium possimus nam nihil aliquid? Accusantium facere neque ratione magnam perspiciatis, nobis cumque. Doloremque corporis iusto et quae ipsum similique dignissimos aut nobis excepturi! Sequi magni aliquam vero repellendus, nisi nemo quae et voluptatibus a, iure accusantium maiores, magnam laborum natus amet eius ipsum expedita officiis numquam. Alias distinctio quia deleniti, eligendi, nihil ipsum beatae eius neque, illum quis quo! Eligendi iste repellendus alias id adipisci totam commodi laudantium sed!", 
+                delay: 1,
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 20%",
+                    end: "bottom center",
+                    //markers: true, // Set to false to hide debugging markers
+                    scrub: true,
+                },
+        }
+        );
+    });
+
+
+
+
+
+    document.querySelectorAll(".card").forEach((card) => {
+        gsap.fromTo(
+            card,
+            { opacity: 0, y: 50 }, // Starting state for each card
+            {
+                opacity: 1,
+                y: 0, // End state for each card
+                stagger: {
+                    each: .5
+                },
+                ease: "elastic",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 70%", // When the card comes into view
+                    end: "bottom center",
+                    //markers: true, // Set to false to hide debugging markers
+                    scrub: true,
+                },
+            }
+        );
+    });
+
+
+
+
+
+    
+    
+
+</script>
+</body>
+</html>
