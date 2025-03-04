@@ -104,6 +104,7 @@ body{
 .card-client {
   background: #2e49d1;
   width: 80%;
+  filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.263));
   padding-top: 25px;
   padding-bottom: 25px;
   padding-left: 20px;
@@ -270,7 +271,7 @@ body{
 
 
     <div class="container  ">
-        <div class="row d-flex">
+        <div class="row d-flex justify-content-center">
             <div class="col-md-4 col-10  d-flex justify-content-center my-4">
                 <div class="card-client">
                     <div class="user-picture">
@@ -504,7 +505,7 @@ gsap.to(".nav-link", {
 
 
 
-    document.querySelectorAll(".card").forEach((card) => {
+    document.querySelectorAll(".card-client").forEach((card) => {
         gsap.fromTo(
             card,
             { opacity: 0, y: 50 }, // Starting state for each card
@@ -517,7 +518,7 @@ gsap.to(".nav-link", {
                 ease: "elastic",
                 scrollTrigger: {
                     trigger: card,
-                    start: "top 70%", // When the card comes into view
+                    start: "top 90%", // When the card comes into view
                     end: "bottom center",
                     //markers: true, // Set to false to hide debugging markers
                     scrub: true,
